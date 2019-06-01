@@ -75,7 +75,8 @@ Location* location_create(Heading* heading, Line line);
  * Will split the text in word and will put them in an index.
  * @param text  [text that we want to split]
  * @param index [index where we want our word to go]
+ * @param stopwordsFile Path of file with the stopwords
  */
-void split_text(char* text,Heading** index);
+void split_text(char* text,Heading** index,const char* stopwordsFile);
 
 #endif

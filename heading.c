@@ -19,6 +19,7 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "stop_words.h"
 #include "heading.h"
 
 //Min char we want in a word
@@ -129,8 +130,11 @@ Location* location_create(Heading* heading, Line line){
 	return newLocation;
 }
 
-void split_text(char* text,Heading** index) {
+void split_text(char* text,Heading** index,const char* stopwordsFile) {
 
+	//Create an array of string with indexed stopWords
+	char** stopWords = (char**) createStopWordsArray(stopwordsFile);
+	printf("%s\n", stopWords[3] );
 	const char* UNWANTED_CHAR = " ,.-?!+1234567890";
 	Line lineNumber = 1;
     Word token = strtok(text, UNWANTED_CHAR);
@@ -147,6 +151,8 @@ void split_text(char* text,Heading** index) {
 			for(size_t i = 0; token[i]; i++){
 			  token[i] = tolower(token[i]);
 			}
+			//TODO : CHECK SI LE MOT EST DANS LES STOP_WORDS !
+			//CF recherche dichotomic avec (char** stopWords)
 			heading_create(index,token,lineNumber);
         }
         token = strtok(NULL, UNWANTED_CHAR);

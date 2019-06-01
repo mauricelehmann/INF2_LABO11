@@ -6,7 +6,7 @@
  Date        : 29.05.2019
 
  Goal        : Declaration of our function that can permit us to print an index
- 			   and to delete an index. 
+ 			   and to delete an index.
  Compiler    : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
 */
@@ -28,5 +28,6 @@ void index_print(const Index index);
  * @param Index [index]
  */
 void index_delete(Index Index);
+
 
 #endif

@@ -15,15 +15,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "stop_words.h"
 #include "book_index.h"
 #include "heading.h"
 
 int main(void) {
 
+	const char* TEXT_FILE = "macbeth.txt";
+	const char* STOPWORDS_FILE = "stopwords.txt";
+
 	Index index = NULL;
-	char paragraphe[] = "The five five boxing boxing coco boxing \nwizards jump quickly. \n \nPack my box with five \ndozen liquor jugs";
-	printf("Texte\n-------------------------\n%s\n\nIndex\n-------------------------\n", paragraphe );
-	split_text(paragraphe,&index);
+	char* paragraph = getStringFromFile(TEXT_FILE);
+	printf("Texte\n-------------------------\n%s\n\nIndex\n-------------------------\n", paragraph );
+
+	split_text(paragraph,&index,STOPWORDS_FILE);
 	index_print(index);
 	//Unless running a memory tool, we cannot know if the memory is perfectly cleaned
 	index_delete(index);
