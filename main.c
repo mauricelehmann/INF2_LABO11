@@ -19,10 +19,14 @@
 #include "book_index.h"
 #include "heading.h"
 
-int main(void) {
-
-	const char* TEXT_FILE = "macbeth.txt";
-	const char* STOPWORDS_FILE = "stopwords.txt";
+int main(int argc, char **argv) {
+	
+	if(argc != 3){
+		printf("No files passed by arguments (need text file and stopwords file)\n");
+		return EXIT_FAILURE;
+	}
+	const char* TEXT_FILE = argv[1];
+	const char* STOPWORDS_FILE = argv[2];
 
 	Index index = NULL;
 	char* paragraph = getStringFromFile(TEXT_FILE);
@@ -32,5 +36,6 @@ int main(void) {
 	index_print(index);
 	//Unless running a memory tool, we cannot know if the memory is perfectly cleaned
 	index_delete(index);
+	system("PAUSE");
 	return EXIT_SUCCESS;
 }

@@ -134,8 +134,7 @@ void split_text(char* text,Heading** index,const char* stopwordsFile) {
 
 	//Create an array of string with indexed stopWords
 	char** stopWords = (char**) createStopWordsArray(stopwordsFile);
-	printf("%s\n", stopWords[3] );
-	const char* UNWANTED_CHAR = " ,.-?!+1234567890";
+	const char* UNWANTED_CHAR = " ';,.-?!+1234567890";
 	Line lineNumber = 1;
     Word token = strtok(text, UNWANTED_CHAR);
     // Keep printing tokens while one of the
