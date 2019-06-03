@@ -1,6 +1,6 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratory  : 10
+ Laboratory  : 11
  File        : book_index.h
  Author(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 29.05.2019
@@ -17,6 +17,12 @@
 
 // Beginning of our list
 typedef  Heading* Index ;
+/**
+ * TODO
+ * @param index      [description]
+ * @param outputFile [description]
+ */
+void index_write(const Index index,const char* outputFile);
 /**
  * Display all words and their line number in a text
  * @param index Pointer on the first "Heading" in our linked list

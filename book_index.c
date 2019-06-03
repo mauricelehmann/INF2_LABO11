@@ -1,12 +1,12 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratory  : 10
+ Laboratory  : 11
  File        : book_index.c
  Author(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 29.05.2019
 
  Goal        : Definition of our function that can permit us to print an index
- 			   and to delete an index. 
+ 			   and to delete an index.
  Compiler    : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
 */
@@ -14,6 +14,21 @@
 #include <stdio.h>
 #include "book_index.h"
 
+void index_write(const Index index,const char* outputFile){
+	FILE* file = fopen(outputFile,"w+");
+	if(file == NULL){
+		perror("Error with outputFile\n");
+		return;
+	}
+	Heading* currentHeading = index;
+	//For each heading in index
+	while(currentHeading != NULL){
+		heading_write(currentHeading,file);
+		currentHeading = currentHeading->next;
+		fputs("\n",file);
+	}
+	fclose(file);
+}
 void index_print(const Index index){
 	Heading* currentHeading = index;
 	//For each heading in index

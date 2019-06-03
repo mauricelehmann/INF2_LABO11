@@ -1,6 +1,6 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratory  : 10
+ Laboratory  : 11
  File        : stop_words.h
  Author(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 29.05.2019

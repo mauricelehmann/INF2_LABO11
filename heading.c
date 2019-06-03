@@ -1,6 +1,6 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratory  : 10
+ Laboratory  : 11
  File        : heading.c
  Author(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 29.05.2019
@@ -25,6 +25,20 @@
 //Min char we want in a word
 #define MIN_CHAR 3
 
+void heading_write(const Heading* heading, FILE* file){
+	Location* currentLocation = heading->location;
+	//We write the word
+	fputs(heading->word,file);
+	//We seek each line where the word appear
+	while(currentLocation != NULL){
+		fputs(", ",file);
+		//Convert the line in string
+		char sLine[5];
+		itoa((int)currentLocation->line, sLine, 10);
+		fputs(sLine,file);
+		currentLocation = currentLocation->next;
+	}
+}
 void heading_print(const Heading* heading){
 	Location* currentLocation = heading->location;
 	//We display the word

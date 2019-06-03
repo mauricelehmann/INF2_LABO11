@@ -1,6 +1,6 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratory  : 10
+ Laboratory  : 11
  File        : heading.h
  Author(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 29.05.2019
@@ -42,6 +42,12 @@ typedef struct Location{
   struct Location* next;
 } Location ;
 
+/**
+ * TODO
+ * @param heading [description]
+ * @param file    [description]
+ */
+void heading_write(const Heading* heading, FILE* file);
 /**
  * Display a heading and all of his locations
  * @param heading Structure Heading to display

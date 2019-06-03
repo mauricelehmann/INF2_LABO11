@@ -1,6 +1,6 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratory  : 10
+ Laboratory  : 11
  File        : main.c
  Author(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 29.05.2019
@@ -18,22 +18,48 @@
 #include "stop_words.h"
 #include "book_index.h"
 #include "heading.h"
+#include <string.h> //strcmp
 
 int main(int argc, char **argv) {
-	
-	if(argc != 3){
-		printf("No files passed by arguments (need text file and stopwords file)\n");
+
+	if(!strcmp(argv[1],"-h")){
+		printf("Syntax : main.exe \"input text\" \"output file\" \"stopwords file (optional)\"\n");
+		return EXIT_SUCCESS;
+	}
+	if(argv[1] == NULL){
+		printf("Error : no input text given\n");
 		return EXIT_FAILURE;
 	}
+	if(argv[2] == NULL){
+		printf("Error : no output index given\n");
+		return EXIT_FAILURE;
+	}else{
+		FILE* outputFile = fopen(argv[2],"r");
+		if(outputFile){
+			char overwrite;
+			printf("Index file already exist, do you want to overwrite it? [y / n]\n");
+			scanf("%c", &overwrite);
+			fclose(outputFile);
+			if(overwrite == 'n'){
+				return EXIT_SUCCESS;
+			}
+		}
+	}
+	if(argv[3] == NULL){
+		//Si il n'y a pas de fichier stopwords, on créer simplement un fichier vide
+		argv[3] = "empty.txt";
+		FILE* stopwordsFile = fopen(argv[3],"ab+");
+		fclose(stopwordsFile);
+	}
 	const char* TEXT_FILE = argv[1];
-	const char* STOPWORDS_FILE = argv[2];
+	const char* OUTPUT_FILE = argv[2];
+	const char* STOPWORDS_FILE = argv[3];
 
 	Index index = NULL;
 	char* paragraph = getStringFromFile(TEXT_FILE);
-	printf("Texte\n-------------------------\n%s\n\nIndex\n-------------------------\n", paragraph );
 
 	split_text(paragraph,&index,STOPWORDS_FILE);
-	index_print(index);
+	index_write(index,OUTPUT_FILE);
 	//Unless running a memory tool, we cannot know if the memory is perfectly cleaned
 	index_delete(index);
 	system("PAUSE");
