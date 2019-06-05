@@ -22,6 +22,7 @@
 
 int main(int argc, char **argv) {
 
+
 	if(!strcmp(argv[1],"-h")){
 		printf("Syntax : main.exe \"input text\" \"output file\" \"stopwords file (optional)\"\n");
 		return EXIT_SUCCESS;
@@ -59,9 +60,12 @@ int main(int argc, char **argv) {
 	char* paragraph = getStringFromFile(TEXT_FILE);
 
 	split_text(paragraph,&index,STOPWORDS_FILE);
+	printf("Indexation is over!\n");
 	index_write(index,OUTPUT_FILE);
 	//Unless running a memory tool, we cannot know if the memory is perfectly cleaned
 	index_delete(index);
+
 	system("PAUSE");
+
 	return EXIT_SUCCESS;
 }

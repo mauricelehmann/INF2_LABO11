@@ -97,14 +97,26 @@ char* getStringFromFile(const char* fileName){
    string[lenght-1] = '\0';
    return realloc(string, sizeof(char)*lenght);
 }
-char** createStopWordsArray(const char* filename){
-	//Crée dynamiquement une string contenant les data du fichier
-	char* rawStopWord = getStringFromFile(filename);
-	//Compte le nombre de mot dans le fichier
-	size_t nbWords = getNbOfWords(rawStopWord);
-	//Alloue un tableau de string en fonction du nombre de mots dans le fichier
-	char** stopWordArray = createEmptyStringTab(nbWords);
-	//Rempli le tableau de string avec tous les mots
-	splitString(stopWordArray,rawStopWord);
-	return (char**)stopWordArray;
+size_t createStopWordsArray(const char* filename,char** stopWords){
+
+	return 0;
+}
+
+bool dichotomicSearch(char** text, char* word, size_t size) {
+
+	size_t first = 0;
+	size_t last = size - 1;
+	size_t halfTab = (first + last) / 2;
+
+	while(first < last ){
+		if(strcmp(text[halfTab], word) > 0) {
+			first = halfTab + 1;
+		}else if(strcmp(text[halfTab], word) == 0){
+			return true;
+		}else{
+			last = halfTab - 1;
+		}
+		halfTab = (first + last) / 2;
+	}
+    return false;
 }

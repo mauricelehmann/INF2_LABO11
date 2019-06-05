@@ -15,7 +15,8 @@
 #include "book_index.h"
 
 void index_write(const Index index,const char* outputFile){
-	FILE* file = fopen(outputFile,"w+");
+	printf("outputfile : %s\n", outputFile );
+	FILE* file = fopen(outputFile,"ab+");
 	if(file == NULL){
 		perror("Error with outputFile\n");
 		return;

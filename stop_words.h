@@ -20,6 +20,8 @@
 #ifndef STOP_WORDS_H
 #define STOP_WORDS_H
 
+#include <stdbool.h>
+
 /**
  * [createEmptyStringTab description]
  * @param  nbWord [description]
@@ -50,6 +52,13 @@ char* getStringFromFile(const char* fileName);
  * @param  filename File to split
  * @return          Array of strings
  */
-char** createStopWordsArray(const char* filename);
-
+size_t createStopWordsArray(const char* filename,char** stopWords);
+/**
+ * TODO
+ * @param  text  [description]
+ * @param  word  [description]
+ * @param  size   [description]
+ * @return       [description]
+ */
+bool dichotomicSearch(char** text, char* word, size_t size);
 #endif //STOP_WORDS_H
