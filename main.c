@@ -58,13 +58,12 @@ int main(int argc, char **argv) {
 
 	Index index = NULL;
 	char* paragraph = getStringFromFile(TEXT_FILE);
-
 	split_text(paragraph,&index,STOPWORDS_FILE);
 	printf("Indexation is over!\n");
 	index_write(index,OUTPUT_FILE);
+	printf("Writing is over !\n");
 	//Unless running a memory tool, we cannot know if the memory is perfectly cleaned
 	index_delete(index);
-
 	system("PAUSE");
 
 	return EXIT_SUCCESS;

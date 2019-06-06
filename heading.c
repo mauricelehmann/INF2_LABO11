@@ -33,7 +33,8 @@ void heading_write(const Heading* heading, FILE* file){
 	while(currentLocation != NULL){
 		fputs(", ",file);
 		//Convert the line in string
-		char sLine[5];
+		//We choose a large 100 char sized buffer
+		char sLine[100];
 		itoa((int)currentLocation->line, sLine, 10);
 		fputs(sLine,file);
 		currentLocation = currentLocation->next;
@@ -154,19 +155,14 @@ void split_text(char* text,Heading** index,const char* stopwordsFile) {
 	//Alloue un tableau de string en fonction du nombre de mots dans le fichier
 	char** stopWords = createEmptyStringTab(nbWords);
 	//Rempli le tableau de string avec tous les mots
-	splitString(stopWords,rawStopWord);
 
-	const char* UNWANTED_CHAR = " ';,.-?!+1234567890";
+	splitString(stopWords,rawStopWord);
+	const char* UNWANTED_CHAR = " <>[]()\n\"';,.-?!+1234567890";
 	Line lineNumber = 1;
     Word token = strtok(text, UNWANTED_CHAR);
     // Keep printing tokens while one of the
     // delimiters present in str[].
     while (token != NULL) {
-        if(strstr(token, "\n") != NULL){
-        	lineNumber++;
-        	//We delete the '\n' character by going forward with the string's pointer
-			token++;
-        }
         if(strlen(token) >= MIN_CHAR) {
 			//tolower on all of the string
 			for(size_t i = 0; token[i]; i++){
@@ -174,10 +170,9 @@ void split_text(char* text,Heading** index,const char* stopwordsFile) {
 		  	}
 			if(!dichotomicSearch(stopWords,token,nbWords)){
 				heading_create(index,token,lineNumber);
-			}else{
-				printf("mot skipe : %s\n", token );
 			}
         }
         token = strtok(NULL, UNWANTED_CHAR);
+		lineNumber++;
     }
 }

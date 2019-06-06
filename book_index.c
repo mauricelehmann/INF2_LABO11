@@ -16,7 +16,7 @@
 
 void index_write(const Index index,const char* outputFile){
 	printf("outputfile : %s\n", outputFile );
-	FILE* file = fopen(outputFile,"ab+");
+	FILE* file = fopen(outputFile,"wb+");
 	if(file == NULL){
 		perror("Error with outputFile\n");
 		return;
