@@ -35,8 +35,10 @@ void heading_write(const Heading* heading, FILE* file){
 		//Convert the line in string
 		//We choose a large 100 char sized buffer
 		char sLine[100];
-		itoa((int)currentLocation->line, sLine, 10);
+		//print in the output the line
+		sprintf(sLine, "%ld", currentLocation->line);
 		fputs(sLine,file);
+
 		currentLocation = currentLocation->next;
 	}
 }
@@ -46,7 +48,7 @@ void heading_print(const Heading* heading){
 	printf("%s", heading->word );
 	//We seek each line where the word appear
 	while(currentLocation != NULL){
-		printf(", %u", currentLocation->line);
+		printf(", %lu", currentLocation->line);
 		currentLocation = currentLocation->next;
 	}
 }

@@ -21,7 +21,7 @@
 #define STOP_WORDS_H
 
 #include <stdbool.h>
-
+#include <stdio.h>
 /**
  * [createEmptyStringTab description]
  * @param  nbWord [description]

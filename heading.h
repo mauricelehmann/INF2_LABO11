@@ -17,6 +17,7 @@
 #define HEADING_H
 
 #include <stdlib.h>
+#include <stdio.h>
 typedef char* Word;
 typedef size_t Line;
 
