@@ -48,12 +48,6 @@ void splitString(char** stopWordArray, char* string);
 char* getStringFromFile(const char* fileName);
 
 /**
- * Split a "stopword" file into an indexed array in place in memory
- * @param  filename File to split
- * @return          Array of strings
- */
-size_t createStopWordsArray(const char* filename,char** stopWords);
-/**
  * TODO
  * @param  text  [description]
  * @param  word  [description]

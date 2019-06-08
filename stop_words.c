@@ -86,10 +86,6 @@ char* getStringFromFile(const char* fileName){
    string[lenght-1] = '\0';
    return realloc(string, sizeof(char)*lenght);
 }
-size_t createStopWordsArray(const char* filename,char** stopWords){
-
-	return 0;
-}
 
 bool dichotomicSearch(char** text, char* word, size_t begin, size_t end) {
 	
