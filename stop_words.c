@@ -105,11 +105,11 @@ size_t createStopWordsArray(const char* filename,char** stopWords){
 bool dichotomicSearch(char** text, char* word, size_t size) {
 
 	size_t first = 0;
-	size_t last = size - 1;
+	size_t last = size - 2;
 	size_t halfTab = (first + last) / 2;
 
 	while(first < last ){
-		if(strcmp(text[halfTab], word) > 0) {
+		if(strcmp(text[halfTab], word) < 0) {
 			first = halfTab + 1;
 		}else if(strcmp(text[halfTab], word) == 0){
 			return true;
@@ -118,5 +118,6 @@ bool dichotomicSearch(char** text, char* word, size_t size) {
 		}
 		halfTab = (first + last) / 2;
 	}
+
     return false;
 }
