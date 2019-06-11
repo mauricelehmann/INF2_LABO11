@@ -23,23 +23,23 @@
 #include <stdbool.h>
 #include <stdio.h>
 /**
- * [createEmptyStringTab description]
- * @param  nbWord [description]
- * @return        [description]
+ * Init. an empty string array with a given number of elements
+ * @param  nbWord Number of element
+ * @return        Pointer to the string array
  */
 char** createEmptyStringTab(const size_t nbWord);
 /**
- * [getNbOfWords description]
- * @param  string [description]
- * @return        [description]
+ * Get the number of word ( separated by \n ) in a string
+ * @param  string String to analyse
+ * @return        Number of words
  */
 size_t getNbOfWords(char* string);
 /**
- * Split une string en "mot" qu'on alloue dynamiquement et qu'on indexe dans un tableau de string
- * @param stopWordArray Tableau de string
- * @param string        String à split
+ * Split a stopwords string into a string array
+ * @param stopWordArray Empty string array
+ * @param string        Stopwords string
  */
-void splitString(char** stopWordArray, char* string);
+void splitStopWords(char** stopWordArray, char* string);
 /**
  * [getStringFromFile description]
  * @param  fileName [description]
@@ -54,11 +54,11 @@ char* getStringFromFile(const char* fileName);
  */
 size_t createStopWordsArray(const char* filename,char** stopWords);
 /**
- * TODO
- * @param  text  [description]
- * @param  word  [description]
- * @param  size   [description]
- * @return       [description]
+ * Dichotomic search into a ordered list of word
+ * @param  text  String array of ordored words
+ * @param  word  Searched word
+ * @param  size  Size of the string array
+ * @return       True if found, else false
  */
 bool dichotomicSearch(char** text, char* word, size_t size);
 #endif //STOP_WORDS_H

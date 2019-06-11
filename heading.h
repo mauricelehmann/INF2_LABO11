@@ -16,8 +16,6 @@
 #ifndef HEADING_H
 #define HEADING_H
 
-#include <stdlib.h>
-#include <stdio.h>
 typedef char* Word;
 typedef size_t Line;
 
@@ -44,9 +42,9 @@ typedef struct Location{
 } Location ;
 
 /**
- * TODO
- * @param heading [description]
- * @param file    [description]
+ * Write a heading in a input file
+ * @param heading Heading to write
+ * @param file    Input file to write in
  */
 void heading_write(const Heading* heading, FILE* file);
 /**

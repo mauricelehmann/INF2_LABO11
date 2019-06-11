@@ -22,18 +22,23 @@
 
 int main(int argc, char **argv) {
 
+	//Command line arguments :
 
+	// "-h" option, show the syntax
 	if(!strcmp(argv[1],"-h")){
 		printf("Syntax : main.exe \"input text\" \"output file\" \"stopwords file (optional)\"\n");
 		return EXIT_SUCCESS;
 	}
+	//Check the input text to index
 	if(argv[1] == NULL){
 		printf("Error : no input text given\n");
 		return EXIT_FAILURE;
 	}
+	//Check the output index file
 	if(argv[2] == NULL){
 		printf("Error : no output index given\n");
 		return EXIT_FAILURE;
+	//Check if the output index file already exists, if so, ask for overwrite
 	}else{
 		FILE* outputFile = fopen(argv[2],"r");
 		if(outputFile){
@@ -46,12 +51,15 @@ int main(int argc, char **argv) {
 			}
 		}
 	}
+	//check for stopword file, it is optional.
 	if(argv[3] == NULL){
-		//Si il n'y a pas de fichier stopwords, on créer simplement un fichier vide
+		//If there is no file, we create an empty one
 		argv[3] = "empty.txt";
 		FILE* stopwordsFile = fopen(argv[3],"ab+");
 		fclose(stopwordsFile);
 	}
+
+	//Get the arguments in const string
 	const char* TEXT_FILE = argv[1];
 	const char* OUTPUT_FILE = argv[2];
 	const char* STOPWORDS_FILE = argv[3];

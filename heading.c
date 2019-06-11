@@ -149,32 +149,35 @@ Location* location_create(Heading* heading, Line line){
 
 void split_text(char* text,Heading** index,const char* stopwordsFile) {
 
+	//Not wanted char when indexing words
+	const char* UNWANTED_CHAR = " <>[]()\"';:,.-?!+1234567890";
 	//Create an array of string with indexed stopWords
-
 	char* rawStopWord = getStringFromFile(stopwordsFile);
 	//Compte le nombre de mot dans le fichier
 	size_t nbWords = getNbOfWords(rawStopWord);
 	//Alloue un tableau de string en fonction du nombre de mots dans le fichier
 	char** stopWords = createEmptyStringTab(nbWords);
 	//Rempli le tableau de string avec tous les mots
+	splitStopWords(stopWords,rawStopWord);
 
-	splitString(stopWords,rawStopWord);
-	const char* UNWANTED_CHAR = " <>[]()\n\"';,.-?!+1234567890";
 	Line lineNumber = 1;
     Word token = strtok(text, UNWANTED_CHAR);
     // Keep printing tokens while one of the
     // delimiters present in str[].
     while (token != NULL) {
+		for(size_t i = 0; token[i]; i++){
+		  if(token[i] == '\n'){
+			 lineNumber++;
+			 token[i] = '\0';
+		  }
+		  token[i] = tolower(token[i]);
+		}
         if(strlen(token) >= MIN_CHAR) {
 			//tolower on all of the string
-			for(size_t i = 0; token[i]; i++){
-			  token[i] = tolower(token[i]);
-		  	}
 			if(!dichotomicSearch(stopWords,token,nbWords)){
 				heading_create(index,token,lineNumber);
 			}
         }
         token = strtok(NULL, UNWANTED_CHAR);
-		lineNumber++;
     }
 }

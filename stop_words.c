@@ -39,7 +39,7 @@ size_t getNbOfWords(char* string){
 	//Result may change if there is only one word or none
 	return i > 0 ? counter+1 : counter;
 }
-void splitString(char** stopWordArray, char* string){
+void splitStopWords(char** stopWordArray, char* string){
 
 	#define MAX_CHAR_WORD 100
 	const char DELIMITEUR = '\n';
@@ -118,6 +118,8 @@ bool dichotomicSearch(char** text, char* word, size_t size) {
 		}
 		halfTab = (first + last) / 2;
 	}
-
+	if(!strcmp(word,text[halfTab])){
+		return true;
+	}
     return false;
 }

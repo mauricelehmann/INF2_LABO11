@@ -18,9 +18,9 @@
 // Beginning of our list
 typedef  Heading* Index ;
 /**
- * TODO
- * @param index      [description]
- * @param outputFile [description]
+ * Write a index into a file, calling heading_write foreach heading in it.
+ * @param index      Index to write
+ * @param outputFile outputFile to write in
  */
 void index_write(const Index index,const char* outputFile);
 /**
