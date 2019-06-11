@@ -41,17 +41,28 @@ size_t getNbOfWords(char* string){
 }
 void splitStopWords(char** stopWordArray, char* string){
 
+	#define MAX_CHAR_WORD 100
+	const char DELIMITEUR = '\n';
+	size_t j = 0;
+	size_t i = 0;
+	size_t wordIndex = 0;
+	char c;
+	char word[MAX_CHAR_WORD];
 
-	const char* UNWANTED_CHAR = " <>[]()\n\';,.-?!+1234567890";
-    char* token = strtok(string, UNWANTED_CHAR);
-    // Keep printing tokens while one of the
-    // delimiters present in str[].
-    size_t counter = 0;
-    while (token != NULL) {
-    	*(stopWordArray + counter) = token;
-        token = strtok(NULL, UNWANTED_CHAR);
-        counter++;
-    }
+	while((c = *(string + j)) != '\0' ){
+		if(c == DELIMITEUR){
+			word[i] = '\0';
+			char* inPlaceWord = calloc(i+1,sizeof(char));
+			strcpy(inPlaceWord,word);
+			stopWordArray[wordIndex] = inPlaceWord;
+			i = 0;
+			wordIndex++;
+		}else{
+			word[i] = c;
+			i++;
+		}
+		j++;
+	}
 }
 char* getStringFromFile(const char* fileName){
 
@@ -86,22 +97,26 @@ char* getStringFromFile(const char* fileName){
    string[lenght-1] = '\0';
    return realloc(string, sizeof(char)*lenght);
 }
+size_t createStopWordsArray(const char* filename,char** stopWords){
 
-bool dichotomicSearch(char** text, char* word, size_t begin, size_t end) {
+	return 0;
+}
 
-	int middleArray = (end + begin) / 2;
-	int strcmpValue = strcmp(word, text[middleArray]);
+bool dichotomicSearch(char** text, char* word, size_t size) {
 
-	if(begin == end || begin > end){
-		return false;
-	}
-	if(strcmpValue == 0) {
-		return true;
+	size_t first = 0;
+	size_t last = size - 2;
+	size_t halfTab = (first + last) / 2;
 
-	} else if(strcmpValue < 0) {
-		dichotomicSearch(text, word, begin, middleArray - 1);
-	} else if(strcmp > 0) {
-		dichotomicSearch(text, word, middleArray + 1, end);
+	while(first < last ){
+		if(strcmp(text[halfTab], word) < 0) {
+			first = halfTab + 1;
+		}else if(strcmp(text[halfTab], word) == 0){
+			return true;
+		}else{
+			last = halfTab - 1;
+		}
+		halfTab = (first + last) / 2;
 	}
 	if(!strcmp(word,text[halfTab])){
 		return true;

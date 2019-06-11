@@ -60,5 +60,5 @@ size_t createStopWordsArray(const char* filename,char** stopWords);
  * @param  size  Size of the string array
  * @return       True if found, else false
  */
-bool dichotomicSearch(char** text, char* word, size_t begin, size_t end);
+bool dichotomicSearch(char** text, char* word, size_t size);
 #endif //STOP_WORDS_H

@@ -72,6 +72,7 @@ int main(int argc, char **argv) {
 	printf("Writing is over !\n");
 	//Unless running a memory tool, we cannot know if the memory is perfectly cleaned
 	index_delete(index);
+	system("PAUSE");
 
 	return EXIT_SUCCESS;
 }
