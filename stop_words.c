@@ -88,26 +88,23 @@ char* getStringFromFile(const char* fileName){
 }
 
 bool dichotomicSearch(char** text, char* word, size_t begin, size_t end) {
-	
+
 	int middleArray = (end + begin) / 2;
-	int strcmpValue = strcmp(word, text[middleArray]);	
-	
+	int strcmpValue = strcmp(word, text[middleArray]);
+
 	if(begin == end || begin > end){
 		return false;
 	}
 	if(strcmpValue == 0) {
 		return true;
-	
+
 	} else if(strcmpValue < 0) {
 		dichotomicSearch(text, word, begin, middleArray - 1);
 	} else if(strcmp > 0) {
 		dichotomicSearch(text, word, middleArray + 1, end);
 	}
-<<<<<<< HEAD
 	if(!strcmp(word,text[halfTab])){
 		return true;
 	}
     return false;
-=======
->>>>>>> 0c71310b646673180bf7277a1238495084f64d28
 }

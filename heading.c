@@ -158,20 +158,13 @@ void split_text(char* text,Heading** index,const char* stopwordsFile) {
 	//Alloue un tableau de string en fonction du nombre de mots dans le fichier
 	char** stopWords = createEmptyStringTab(nbWords);
 	//Rempli le tableau de string avec tous les mots
-<<<<<<< HEAD
 	splitStopWords(stopWords,rawStopWord);
 
-=======
-	splitString(stopWords,rawStopWord);
-
-	const char* UNWANTED_CHAR = " <>[]()\n\"';,.-?!+1234567890";
->>>>>>> 0c71310b646673180bf7277a1238495084f64d28
 	Line lineNumber = 1;
     Word token = strtok(text, UNWANTED_CHAR);
     // Keep printing tokens while one of the
     // delimiters present in str[].
     while (token != NULL) {
-<<<<<<< HEAD
 		for(size_t i = 0; token[i]; i++){
 		  if(token[i] == '\n'){
 			 lineNumber++;
@@ -185,15 +178,6 @@ void split_text(char* text,Heading** index,const char* stopwordsFile) {
 				heading_create(index,token,lineNumber);
 			}
         }
-=======
-		//tolower on all of the string
-		for(size_t i = 0; token[i]; i++){
-		  token[i] = tolower(token[i]);
-	  	}
-		if(!dichotomicSearch(stopWords,token,0,nbWords - 1)){
-			heading_create(index,token,lineNumber);
-		}
->>>>>>> 0c71310b646673180bf7277a1238495084f64d28
         token = strtok(NULL, UNWANTED_CHAR);
     }
 }
