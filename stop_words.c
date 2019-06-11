@@ -41,28 +41,16 @@ size_t getNbOfWords(char* string){
 }
 void splitStopWords(char** stopWordArray, char* string){
 
-	#define MAX_CHAR_WORD 100
-	const char DELIMITEUR = '\n';
-	size_t j = 0;
-	size_t i = 0;
-	size_t wordIndex = 0;
-	char c;
-	char word[MAX_CHAR_WORD];
-
-	while((c = *(string + j)) != '\0' ){
-		if(c == DELIMITEUR){
-			word[i] = '\0';
-			char* inPlaceWord = calloc(i+1,sizeof(char));
-			strcpy(inPlaceWord,word);
-			stopWordArray[wordIndex] = inPlaceWord;
-			i = 0;
-			wordIndex++;
-		}else{
-			word[i] = c;
-			i++;
-		}
-		j++;
-	}
+  const char* UNWANTED_CHAR = " <>[]()\n\';,.-?!+1234567890";
+    char* token = strtok(string, UNWANTED_CHAR);
+    // Keep printing tokens while one of the
+    // delimiters present in str[].
+    size_t counter = 0;
+    while (token != NULL) {
+      *(stopWordArray + counter) = token;
+        token = strtok(NULL, UNWANTED_CHAR);
+        counter++;
+    }
 }
 char* getStringFromFile(const char* fileName){
 
@@ -118,7 +106,7 @@ bool dichotomicSearch(char** text, char* word, size_t size) {
 		}
 		halfTab = (first + last) / 2;
 	}
-	if(!strcmp(word,text[halfTab])){
+	if(!strcmp(word,text[halfTab]) || !strcmp(word,text[halfTab+1])){
 		return true;
 	}
     return false;
