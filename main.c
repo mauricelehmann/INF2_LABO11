@@ -50,14 +50,6 @@ int main(int argc, char **argv) {
 			}
 		}
 	}
-	//check for stopword file, it is optional.
-	if(argv[3] == NULL){
-		//If there is no file, we create an empty one
-		argv[3] = "empty.txt";
-		FILE* stopwordsFile = fopen(argv[3],"ab+");
-		fclose(stopwordsFile);
-	}
-
 	//Get the arguments in const string
 	const char* TEXT_FILE = argv[1];
 	const char* OUTPUT_FILE = argv[2];
