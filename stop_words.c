@@ -41,7 +41,7 @@ size_t getNbOfWords(char* string){
 }
 void splitStopWords(char** stopWordArray, char* string){
 
-  const char* UNWANTED_CHAR = " <>[]()\n\';,.-?!+1234567890";
+  	const char* UNWANTED_CHAR = " <>[]()\n\';,.-?!+1234567890";
     char* token = strtok(string, UNWANTED_CHAR);
     // Keep printing tokens while one of the
     // delimiters present in str[].
@@ -84,10 +84,6 @@ char* getStringFromFile(const char* fileName){
    }
    string[lenght-1] = '\0';
    return realloc(string, sizeof(char)*lenght);
-}
-size_t createStopWordsArray(const char* filename,char** stopWords){
-
-	return 0;
 }
 
 bool dichotomicSearch(char** text, char* word, size_t size) {

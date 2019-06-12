@@ -36,7 +36,7 @@ void heading_write(const Heading* heading, FILE* file){
 		//We choose a large 100 char sized buffer
 		char sLine[100];
 		//print in the output the line
-		sprintf(sLine, "%ld", currentLocation->line);
+		sprintf(sLine, "%ld",(unsigned long)currentLocation->line);
 		fputs(sLine,file);
 
 		currentLocation = currentLocation->next;
@@ -48,7 +48,7 @@ void heading_print(const Heading* heading){
 	printf("%s", heading->word );
 	//We seek each line where the word appear
 	while(currentLocation != NULL){
-		printf(", %lu", currentLocation->line);
+		printf(", %lu",(unsigned long) currentLocation->line);
 		currentLocation = currentLocation->next;
 	}
 }
@@ -66,6 +66,10 @@ void heading_delete(Heading* heading){
 }
 Heading* heading_alloc(Word word,Line line){
 	Heading* newHeading = calloc(1,sizeof(Heading));
+	if(newHeading == NULL){
+		printf("Error on heading allocation!\n");
+		return NULL;
+	}
 	newHeading->word = word;
 	newHeading->next = NULL;
 	newHeading->location = NULL;
@@ -126,6 +130,10 @@ Location* location_create(Heading* heading, Line line){
 		return NULL;
 
 	Location* newLocation = calloc(1,sizeof(Location));
+	if(newLocation == NULL){
+		printf("Error on location allocation!\n");
+		return NULL;
+	}
 	newLocation->line = line;
 	newLocation->next = NULL;
 	heading->lastLine = line;

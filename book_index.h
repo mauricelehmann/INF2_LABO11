@@ -18,6 +18,7 @@
 // Beginning of our list
 typedef  Heading* Index ;
 /**
+ * Labo 11
  * Write a index into a file, calling heading_write foreach heading in it.
  * @param index      Index to write
  * @param outputFile outputFile to write in

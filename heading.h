@@ -42,6 +42,7 @@ typedef struct Location{
 } Location ;
 
 /**
+ * Labo 11
  * Write a heading in a input file
  * @param heading Heading to write
  * @param file    Input file to write in
@@ -77,6 +78,7 @@ Heading* heading_alloc(Word word,Line line);
  */
 Location* location_create(Heading* heading, Line line);
 /**
+ * Labo 11
  * Will split the text in word and will put them in an index.
  * @param text  [text that we want to split]
  * @param index [index where we want our word to go]

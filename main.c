@@ -22,8 +22,7 @@
 
 int main(int argc, char **argv) {
 
-	//Command line arguments :
-
+	//Command line arguments : (Labo 11)
 	// "-h" option, show the syntax
 	if(!strcmp(argv[1],"-h")){
 		printf("Syntax : main.exe \"input text\" \"output file\" \"stopwords file (optional)\"\n");

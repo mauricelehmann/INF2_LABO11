@@ -23,38 +23,44 @@
 #include <stdbool.h>
 #include <stdio.h>
 /**
+ * Labo 11
  * Init. an empty string array with a given number of elements
  * @param  nbWord Number of element
  * @return        Pointer to the string array
  */
 char** createEmptyStringTab(const size_t nbWord);
 /**
+ * Labo 11
  * Get the number of word ( separated by \n ) in a string
  * @param  string String to analyse
  * @return        Number of words
  */
 size_t getNbOfWords(char* string);
 /**
+ * Labo 11
  * Split a stopwords string into a string array
  * @param stopWordArray Empty string array
  * @param string        Stopwords string
  */
 void splitStopWords(char** stopWordArray, char* string);
 /**
- * [getStringFromFile description]
- * @param  fileName [description]
- * @return          [description]
+ * Labo 11
+ * Return a string from a file
+ * @param  fileName file to load in string
+ * @return          String contains the file data
  */
 char* getStringFromFile(const char* fileName);
 
 /**
- * Split a "stopword" file into an indexed array in place in memory
+ * Labo 11
+ *  Split a "stopword" file into an indexed array in place in memory
  * @param  filename File to split
  * @return          Array of strings
  */
 size_t createStopWordsArray(const char* filename,char** stopWords);
 /**
- * Dichotomic search into a ordered list of word
+ *  Labo 11
+ *  Dichotomic search into a ordered list of word
  * @param  text  String array of ordored words
  * @param  word  Searched word
  * @param  size  Size of the string array
